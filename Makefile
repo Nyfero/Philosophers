@@ -6,9 +6,11 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/06 14:41:17 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/10 16:18:59 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# valgrind --tool=helgrind
 
 # Colors
 GREY = \e[90m
@@ -30,8 +32,8 @@ RM = rm -rf
 
 SRCS_PATH = srcs
 
-SRCS = $(addprefix $(SRCS_PATH)/,main.c ft_error.c ft_init.c ft_str_utils.c \
-ft_atoi.c ft_create_threads.c ft_get_time.c ft_sleep.c ft_eat.c)
+SRCS = $(addprefix $(SRCS_PATH)/,main.c ft_error.c ft_init.c ft_utils.c \
+	ft_create_threads.c ft_sleep.c ft_eat.c ft_display.c)
 
 OBJS_PATH = objs/
 
@@ -39,7 +41,11 @@ OBJS = $(patsubst $(SRCS_PATH)%.c,	$(OBJS_PATH)%.o, $(SRCS))
 
 INC = inc/
 
+# rules
 all: $(NAME)
+
+exec: all
+	@valgrind --tool=helgrind ./$(NAME) 15 100 100 100 100
 
 $(NAME): $(OBJS_PATH) $(OBJS)
 	@ echo "$(BLUE)\n		*** Make $(NAME) ***\n$(END)"
@@ -62,4 +68,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re exec
