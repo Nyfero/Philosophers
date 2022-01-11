@@ -6,7 +6,7 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/10 16:18:59 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/11 14:05:24 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,10 @@ RM = rm -rf
 
 SRCS_PATH = srcs
 
+#ft_eat.c ft_sleep.c
+
 SRCS = $(addprefix $(SRCS_PATH)/,main.c ft_error.c ft_init.c ft_utils.c \
-	ft_create_threads.c ft_sleep.c ft_eat.c ft_display.c)
+ft_create_threads.c ft_display.c)
 
 OBJS_PATH = objs/
 
@@ -45,7 +47,7 @@ INC = inc/
 all: $(NAME)
 
 exec: all
-	@valgrind --tool=helgrind ./$(NAME) 15 100 100 100 100
+	@valgrind --tool=helgrind ./$(NAME) 15 100 100 100 100 ; true
 
 $(NAME): $(OBJS_PATH) $(OBJS)
 	@ echo "$(BLUE)\n		*** Make $(NAME) ***\n$(END)"

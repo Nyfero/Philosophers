@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/10 17:53:34 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/11 13:59:01 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,38 @@ int	init(t_data *data, int argc, char **argv)
 	data->t_die = ft_atoi(argv[2]);
 	data->t_eat = ft_atoi(argv[3]);
 	data->t_sleep = ft_atoi(argv[4]);
-	data->n_eat = -1;
+	data->n_eat = 0;
 	if (argc == 6)
 		data->n_eat = ft_atoi(argv[5]);
 	data->i = 0;
 	if (!(mutex_init(data)))
 		return (0);
-	philo_init(data);
+	data->vitals = philo_init(data);
+	if (!data->vitals)
+		return (0);
 	return (1);
 }
 
-void	philo_init(t_data *data)
+t_philo	*philo_init(t_data *data)
 {
-	t_philo	philo[data->n_philo];
+	t_philo	*vitals;
 	int		i;
 
 	i = 0;
+	vitals = (t_philo *)malloc(sizeof(t_philo) * data->n_philo);
+	if (!vitals)
+		return (NULL);
 	while (i < data->n_philo)
 	{
-		philo[i].pos = i + 1;
-		philo[i].time = 0;
-		philo[i].count = 0;
-		philo[i].lfork = 0;
-		philo[i].rfork = 0;
+		vitals[i].pos = i + 1;
+		vitals[i].time = 0;
+		vitals[i].count = 0;
+		vitals[i].lfork = 0;
+		vitals[i].rfork = 0;
+		vitals[i].data = data;
 		i++;
 	}
-	return ;
+	return (vitals);
 }
 
 int	mutex_init(t_data *data)
