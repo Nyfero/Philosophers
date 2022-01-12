@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/11 14:01:36 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/12 17:11:44 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,27 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-struct s_data;
+struct	s_data;
+
+typedef struct s_time
+{
+	struct timeval	now;
+}	t_time;
 
 typedef struct s_philo
 {
 	int				pos;
-	int				time;
+	long int		last;
 	int				count;
-	int				lfork;
-	int				rfork;
 	struct s_data	*data;
+	t_time			time;
 }	t_philo;
-
-typedef struct s_time
-{
-	struct timeval	start;
-	struct timeval	now;
-}	t_time;
 
 typedef struct s_data
 {
 	t_time			time;
+	long int		start;
+
 	pthread_mutex_t	mut_speak;
 	pthread_mutex_t	mut_death;
 	pthread_mutex_t	mut_fork[200];
@@ -55,8 +55,7 @@ typedef struct s_data
 	int				i;
 }	t_data;
 
-
-//	philo.c
+//	main.c
 int			main(int argc, char **argv);
 
 //	ft_init.c
@@ -67,7 +66,7 @@ int			mutex_init(t_data *data);
 
 //  ft_error.c
 int			ft_error(char *strerr);
-int			ft_clean(t_data *data);
+int			clean(t_data *data);
 
 //	ft_utils.c
 long int	long_value(int j, unsigned long long int res);
@@ -77,16 +76,20 @@ void		ft_putstr_fd(int fd, char *str);
 int			ft_isdigit(int c);
 
 //  ft_create_threads.c
-int			ft_create_threads(t_data *data);
-void		*ft_routine(void *arg);
+int			create_threads(t_data *data);
+void		*routine(void *arg);
 
-//	ft_get_time.c
-void		print_time(t_data data);
-
-//	ft_sleep.c
-void		ft_sleep(t_data data);
+//	ft_display.c
+void		print_fork(t_philo vitals, t_data *data);
+void		print_eat(t_philo vitals, t_data *data);
+void		print_sleep(t_philo vitals, t_data *data);
+void		print_think(t_philo vitals, t_data *data);
+void		print_dead(t_philo vitals, t_data *data);
+void		print_time(t_data *data);
 
 //	ft_eat.c
-void		ft_take_fork(t_data data);
+void		take_fork(t_philo vitals, t_data *data);
+void		eat(t_philo vitals, t_data *data);
+void		drop_fork(t_philo vitals, t_data *data);
 
 #endif

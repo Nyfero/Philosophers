@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/11 13:59:01 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/12 17:03:41 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	init(t_data *data, int argc, char **argv)
 	data->i = 0;
 	if (!(mutex_init(data)))
 		return (0);
+	gettimeofday(&data->time.now, NULL);
+	data->start = (data->time.now.tv_sec * 1000000
+			+ data->time.now.tv_usec) / 1000;
 	data->vitals = philo_init(data);
 	if (!data->vitals)
 		return (0);
@@ -64,11 +67,9 @@ t_philo	*philo_init(t_data *data)
 	while (i < data->n_philo)
 	{
 		vitals[i].pos = i + 1;
-		vitals[i].time = 0;
 		vitals[i].count = 0;
-		vitals[i].lfork = 0;
-		vitals[i].rfork = 0;
 		vitals[i].data = data;
+		vitals[i].last = data->start;
 		i++;
 	}
 	return (vitals);

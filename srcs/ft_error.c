@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 12:06:33 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/11 12:28:54 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/12 16:11:19 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_error(char *strerr)
 	return (1);
 }
 
-int	ft_clean(t_data *data)
+int	clean(t_data *data)
 {
 	int	i;
 

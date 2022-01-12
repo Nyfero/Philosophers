@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:13:18 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/11 10:56:47 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/12 14:05:43 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	main(int argc, char **argv)
 	if (!(check_param(argc, argv)))
 		return (ft_error("Error: argument\n"));
 	if (!(init(&data, argc, argv)))
-		return (ft_clean(&data) && ft_error("Error: init\n"));
-	if (!ft_create_threads(&data))
-		return (ft_clean(&data) && ft_error("Error: thread\n"));
-	ft_clean(&data);
+		return (clean(&data) && ft_error("Error: init\n"));
+	if (!create_threads(&data))
+		return (clean(&data) && ft_error("Error: thread\n"));
+	clean(&data);
 	write(1, "end\n", 4);
 	return (0);
 }

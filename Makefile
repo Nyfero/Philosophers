@@ -6,11 +6,14 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/11 14:05:24 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/12 17:57:18 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # valgrind --tool=helgrind
+
+#	test pair : 4 210 100 100
+#	test impair : 5 310 100 100
 
 # Colors
 GREY = \e[90m
@@ -32,10 +35,8 @@ RM = rm -rf
 
 SRCS_PATH = srcs
 
-#ft_eat.c ft_sleep.c
-
 SRCS = $(addprefix $(SRCS_PATH)/,main.c ft_error.c ft_init.c ft_utils.c \
-ft_create_threads.c ft_display.c)
+ft_create_threads.c ft_display.c ft_eat.c)
 
 OBJS_PATH = objs/
 
