@@ -6,7 +6,7 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/13 17:52:36 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/13 18:01:26 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS_PATH) $(OBJS)
 	@ echo "$(BLUE)\n		*** Make $(NAME) ***\n$(END)"
-	@ $(CC) $(CFLAGS) $(OBJS_PATH)/*.o -o $(NAME)
+	@ $(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@ echo "$(GREEN)\n		---$(NAME) created ---\n$(END)"
 
 $(OBJS_PATH):
