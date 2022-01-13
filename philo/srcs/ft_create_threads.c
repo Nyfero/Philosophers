@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:12:37 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/12 18:05:52 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 11:56:36 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,22 @@ void	*routine(void *arg)
 	vitals = *(t_philo *)arg;
 	data = vitals.data;
 	if ((vitals.pos % 2) == 1)
-		usleep(10);
-	while (vitals.last - data->start < data->t_die)
+		usleep(100);
+	while (vitals.now - vitals.last < data->t_die)
 	{
-		take_fork(vitals, data);
-		eat(vitals, data);
-		drop_fork(vitals, data);
+		take_fork(&vitals, data);
+		eat(&vitals, data);
+		drop_fork(&vitals, data);
 	}
 	return (NULL);
+}
+
+long int	reset_time(void)
+{
+	t_time		time;
+	long int	tmp;
+
+	gettimeofday(&time.now, NULL);
+	tmp = ((time.now.tv_sec * 1000000 + time.now.tv_usec) / 1000);
+	return (tmp);
 }

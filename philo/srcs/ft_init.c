@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/12 17:03:41 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 10:45:20 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_philo	*philo_init(t_data *data)
 		vitals[i].count = 0;
 		vitals[i].data = data;
 		vitals[i].last = data->start;
+		vitals[i].now = data->start;
 		i++;
 	}
 	return (vitals);
