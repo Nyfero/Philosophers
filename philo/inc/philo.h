@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 15:16:51 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 17:46:02 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ int			ft_isdigit(int c);
 //  ft_create_threads.c
 int			create_threads(t_data *data);
 void		*routine(void *arg);
-int			is_alive(t_philo *vitals, t_data *data);
 
 //	ft_display.c
 void		print_info(t_philo vitals, t_data *data, char *str);
-long int	reset_time(void);
 
 //	ft_eat.c
 void		take_fork(t_philo *vitals, t_data *data);
 void		eat(t_philo *vitals, t_data *data);
 void		drop_fork(t_philo *vitals, t_data *data);
+int			is_alive(t_philo *vitals, t_data *data);
+long int	reset_time(void);
 
 #endif

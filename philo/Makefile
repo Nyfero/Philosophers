@@ -6,7 +6,7 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/13 17:06:32 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/13 17:49:33 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ NAME = philo
 
 CC = clang
 
-CFLAGS = -g -Wall -Wextra -Werror -pthread
+CFLAGS = -g -Wall -Wextra -Werror -pthread -fsanitize=thread
 
 RM = rm -rf
 
@@ -46,13 +46,6 @@ INC = inc/
 
 # rules
 all: $(NAME)
-
-pair: all
-	@valgrind --tool=helgrind --history-level=approx ./$(NAME) 4 210 100 100 ; true
-
-impair: all
-	@valgrind --tool=helgrind ./$(NAME) 5 310 100 100 ; true
-
 
 $(NAME): $(OBJS_PATH) $(OBJS)
 	@ echo "$(BLUE)\n		*** Make $(NAME) ***\n$(END)"
@@ -75,4 +68,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re pair impair
+.PHONY: all clean fclean re
