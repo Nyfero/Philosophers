@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:12:37 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 14:28:20 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 15:18:30 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ int	is_alive(t_philo *vitals, t_data *data)
 	else
 	{
 		print_info(*vitals, data, "died");
+		pthread_mutex_lock(&data->mut_death);
+		data->end = 1;
+		pthread_mutex_unlock(&data->mut_death);
 		return (0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 12:29:46 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 15:17:06 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	init(t_data *data, int argc, char **argv)
 	if (argc == 6)
 		data->n_eat = ft_atoi(argv[5]);
 	data->i = 0;
+	data->end = 0;
 	if (!(mutex_init(data)))
 		return (0);
 	gettimeofday(&data->time.now, NULL);
