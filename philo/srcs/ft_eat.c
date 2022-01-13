@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:41:56 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 11:58:03 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 14:28:10 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	take_fork(t_philo *vitals, t_data *data)
 {
 	vitals->now = reset_time();
-	if (vitals->now - vitals->last< data->t_die)
+	if (is_alive(vitals, data))
 	{
 		if ((vitals->pos % 2) == 1)
 		{
@@ -36,31 +36,25 @@ void	take_fork(t_philo *vitals, t_data *data)
 			pthread_mutex_lock(&data->mut_fork[(vitals->pos - 1 + data->n_philo)
 				% data->n_philo]);
 		}
-		print_fork(*vitals, data);
+		print_info(*vitals, data, "has taken a fork");
 	}
 	else
-	{
-		print_dead(*vitals, data);
 		exit(1);
-	}
 }
 
 void	eat(t_philo *vitals, t_data *data)
 {
 	vitals->now = reset_time();
-	if (vitals->now - vitals->last < data->t_die)
+	if (is_alive(vitals, data))
 	{
 		vitals->last = reset_time();
-		print_eat(*vitals, data);
-		vitals->count++;
+		print_info(*vitals, data, "is eating");
+		vitals->eat++;
 		usleep(data->t_eat * 1000);
 		vitals->now = reset_time();
 	}
 	else
-	{
-		print_dead(*vitals, data);
 		exit(1);
-	}
 }
 
 /*
@@ -71,7 +65,7 @@ void	eat(t_philo *vitals, t_data *data)
 void	drop_fork(t_philo *vitals, t_data *data)
 {
 	vitals->now = reset_time();
-	if (vitals->now - vitals->last < data->t_die)
+	if (is_alive(vitals, data))
 	{
 		if ((vitals->pos % 2) == 1)
 		{
@@ -87,20 +81,14 @@ void	drop_fork(t_philo *vitals, t_data *data)
 			pthread_mutex_unlock(&data->mut_fork[(vitals->pos - 2 + data->n_philo)
 				% data->n_philo]);
 		}
-		print_sleep(*vitals, data);
+		print_info(*vitals, data, "is sleeping");
 		usleep(data->t_sleep * 1000);
 		vitals->now = reset_time();
 	}
 	else
-	{
-		print_dead(*vitals, data);
 		exit(1);
-	}
-	if (vitals->now - vitals->last < data->t_die)
-		print_think(*vitals, data);
+	if (is_alive(vitals, data))
+		print_info(*vitals, data, "is thinking");
 	else
-	{
-		print_dead(*vitals, data);
 		exit(1);
-	}
 }

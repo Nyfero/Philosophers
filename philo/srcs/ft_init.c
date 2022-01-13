@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 10:45:20 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 12:29:46 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	init(t_data *data, int argc, char **argv)
 	data->t_die = ft_atoi(argv[2]);
 	data->t_eat = ft_atoi(argv[3]);
 	data->t_sleep = ft_atoi(argv[4]);
-	data->n_eat = 0;
+	data->n_eat = -1;
 	if (argc == 6)
 		data->n_eat = ft_atoi(argv[5]);
 	data->i = 0;
@@ -67,7 +67,7 @@ t_philo	*philo_init(t_data *data)
 	while (i < data->n_philo)
 	{
 		vitals[i].pos = i + 1;
-		vitals[i].count = 0;
+		vitals[i].eat = 0;
 		vitals[i].data = data;
 		vitals[i].last = data->start;
 		vitals[i].now = data->start;

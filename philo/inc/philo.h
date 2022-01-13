@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 11:58:23 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/13 14:28:31 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_philo
 	int				pos;
 	long int		now;
 	long int		last;
-	int				count;
+	long int		eat;
 	struct s_data	*data;
 }	t_philo;
 
@@ -78,15 +78,11 @@ int			ft_isdigit(int c);
 //  ft_create_threads.c
 int			create_threads(t_data *data);
 void		*routine(void *arg);
-long int	reset_time(void);
+int			is_alive(t_philo *vitals, t_data *data);
 
 //	ft_display.c
-void		print_fork(t_philo vitals, t_data *data);
-void		print_eat(t_philo vitals, t_data *data);
-void		print_sleep(t_philo vitals, t_data *data);
-void		print_think(t_philo vitals, t_data *data);
-void		print_dead(t_philo vitals, t_data *data);
-void		print_time(t_data *data);
+void		print_info(t_philo vitals, t_data *data, char *str);
+long int	reset_time(void);
 
 //	ft_eat.c
 void		take_fork(t_philo *vitals, t_data *data);

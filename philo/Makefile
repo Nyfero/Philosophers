@@ -6,7 +6,7 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/12 17:57:18 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/13 12:24:34 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,12 @@ INC = inc/
 # rules
 all: $(NAME)
 
-exec: all
-	@valgrind --tool=helgrind ./$(NAME) 15 100 100 100 100 ; true
+pair: all
+	@valgrind --tool=helgrind --history-level=approx ./$(NAME) 4 210 100 100 ; true
+
+impair: all
+	@valgrind --tool=helgrind ./$(NAME) 5 310 100 100 ; true
+
 
 $(NAME): $(OBJS_PATH) $(OBJS)
 	@ echo "$(BLUE)\n		*** Make $(NAME) ***\n$(END)"
@@ -71,4 +75,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re exec
+.PHONY: all clean fclean re pair impair
