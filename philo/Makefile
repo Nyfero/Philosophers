@@ -6,14 +6,12 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/13 17:49:33 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/13 17:52:36 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# valgrind --tool=helgrind
-
-#	test pair : 4 210 100 100
-#	test impair : 5 310 100 100
+# valgrind --tool=helgrind --history-level=approx
+# -fsanitize=thread
 
 # Colors
 GREY = \e[90m
@@ -29,7 +27,7 @@ NAME = philo
 
 CC = clang
 
-CFLAGS = -g -Wall -Wextra -Werror -pthread -fsanitize=thread
+CFLAGS = -g -Wall -Wextra -Werror -pthread
 
 RM = rm -rf
 
