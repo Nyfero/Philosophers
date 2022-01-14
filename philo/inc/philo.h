@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 17:46:02 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/14 14:14:48 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,17 @@ void		print_info(t_philo vitals, t_data *data, char *str);
 void		take_fork(t_philo *vitals, t_data *data);
 void		eat(t_philo *vitals, t_data *data);
 void		drop_fork(t_philo *vitals, t_data *data);
-int			is_alive(t_philo *vitals, t_data *data);
+void		sleep_and_think(t_philo *vitals, t_data *data);
+
+//	ft_eat_utils.c
 long int	reset_time(void);
+int			is_alive(t_philo *vitals, t_data *data);
+void		*one_philo(t_philo *vitals, t_data *data);
+
+//	ft_forks_utils.c
+void		take_left_fork(t_philo *vitals, t_data *data);
+void		take_right_fork(t_philo *vitals, t_data *data);
+void		drop_left_fork(t_philo *vitals, t_data *data);
+void		drop_right_fork(t_philo *vitals, t_data *data);
 
 #endif

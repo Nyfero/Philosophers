@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:13:18 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 15:26:42 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/14 10:54:08 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	main(int argc, char **argv)
 	if (!create_threads(&data))
 		return (clean(&data) && ft_error("Error: thread\n"));
 	clean(&data);
+	write(1, "end\n", 4);
 	return (0);
 }

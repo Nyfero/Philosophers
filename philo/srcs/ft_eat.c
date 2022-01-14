@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:41:56 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/13 17:47:19 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/14 14:47:13 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,31 @@
 
 void	take_fork(t_philo *vitals, t_data *data)
 {
-	vitals->now = reset_time();
 	if (is_alive(vitals, data))
 	{
 		if ((vitals->pos % 2) == 1)
 		{
-			pthread_mutex_lock(&data->mut_fork[(vitals->pos - 1 + data->n_philo)
-				% data->n_philo]);
-			print_info(*vitals, data, "has taken a fork");
-			pthread_mutex_lock(&data->mut_fork[(vitals->pos - 2 + data->n_philo)
-				% data->n_philo]);
-			print_info(*vitals, data, "has taken a fork");
+			take_left_fork(vitals, data);
+			take_right_fork(vitals, data);
 		}
 		else
 		{
-			pthread_mutex_lock(&data->mut_fork[(vitals->pos - 2 + data->n_philo)
-				% data->n_philo]);
-			print_info(*vitals, data, "has taken a fork");
-			pthread_mutex_lock(&data->mut_fork[(vitals->pos - 1 + data->n_philo)
-				% data->n_philo]);
-			print_info(*vitals, data, "has taken a fork");
+			take_right_fork(vitals, data);
+			take_left_fork(vitals, data);
 		}
 	}
+	return ;
 }
 
 void	eat(t_philo *vitals, t_data *data)
 {
-	vitals->now = reset_time();
 	if (is_alive(vitals, data))
 	{
 		vitals->last = reset_time();
 		print_info(*vitals, data, "is eating");
-		vitals->eat++;
 		usleep(data->t_eat * 1000);
-		vitals->now = reset_time();
+		if (is_alive(vitals, data))
+			vitals->eat++;
 	}
 }
 
@@ -65,53 +56,27 @@ void	drop_fork(t_philo *vitals, t_data *data)
 {
 	if ((vitals->pos % 2) == 1)
 	{
-		pthread_mutex_unlock(&data->mut_fork[(vitals->pos - 2 + data->n_philo)
-			% data->n_philo]);
-		pthread_mutex_unlock(&data->mut_fork[(vitals->pos - 1 + data->n_philo)
-			% data->n_philo]);
+		drop_right_fork(vitals, data);
+		drop_left_fork(vitals, data);
 	}
 	else
 	{
-		pthread_mutex_unlock(&data->mut_fork[(vitals->pos - 1 + data->n_philo)
-			% data->n_philo]);
-		pthread_mutex_unlock(&data->mut_fork[(vitals->pos - 2 + data->n_philo)
-			% data->n_philo]);
+		drop_left_fork(vitals, data);
+		drop_right_fork(vitals, data);
 	}
-	vitals->now = reset_time();
+}
+
+void	sleep_and_think(t_philo *vitals, t_data *data)
+{
 	if (is_alive(vitals, data))
 	{
 		print_info(*vitals, data, "is sleeping");
 		usleep(data->t_sleep * 1000);
-		vitals->now = reset_time();
 		if (is_alive(vitals, data))
+		{
+			if (vitals->pos % 2 == 1)
+				usleep(data->t_die / 4);
 			print_info(*vitals, data, "is thinking");
-	}
-}
-
-/*
-**	Retourne le temps actuel en milliseconde
-*/
-
-long int	reset_time(void)
-{
-	t_time		time;
-	long int	tmp;
-
-	gettimeofday(&time.now, NULL);
-	tmp = ((time.now.tv_sec * 1000000 + time.now.tv_usec) / 1000);
-	return (tmp);
-}
-
-int	is_alive(t_philo *vitals, t_data *data)
-{
-	if (vitals->now - vitals->last < data->t_die)
-		return (1);
-	else
-	{
-		print_info(*vitals, data, "died");
-		pthread_mutex_lock(&data->mut_death);
-		data->end = 1;
-		pthread_mutex_unlock(&data->mut_death);
-		return (0);
+		}
 	}
 }
