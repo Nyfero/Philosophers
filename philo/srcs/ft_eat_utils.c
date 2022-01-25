@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 11:30:08 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/14 14:55:42 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/25 10:53:48 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_alive(t_philo *vitals, t_data *data)
 	}
 	else
 	{
-		print_info(*vitals, data, "died");
+		print_dead(*vitals, data);
 		data->end = 1;
 		pthread_mutex_unlock(&data->mut_death);
 		return (0);
@@ -48,7 +48,7 @@ void	*one_philo(t_philo *vitals, t_data *data)
 {
 	take_left_fork(vitals, data);
 	while (is_alive(vitals, data))
-		usleep(50);
+		usleep(100);
 	drop_left_fork(vitals, data);
 	return (NULL);
 }

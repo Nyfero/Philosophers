@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/14 14:14:48 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/25 10:50:31 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void		*routine(void *arg);
 
 //	ft_display.c
 void		print_info(t_philo vitals, t_data *data, char *str);
+void		print_dead(t_philo vitals, t_data *data);
 
 //	ft_eat.c
 void		take_fork(t_philo *vitals, t_data *data);
