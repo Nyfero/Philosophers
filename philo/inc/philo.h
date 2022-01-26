@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/26 10:56:58 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/26 11:05:19 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct s_data
 	int				t_sleep;
 	int				n_eat;
 
+	size_t			eat;
 	int				end;
-	long int		eat;
 	int				i;
 }	t_data;
 

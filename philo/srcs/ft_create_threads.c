@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:12:37 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/26 10:54:14 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/26 11:05:01 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	*routine(void *arg)
 	while (1)
 	{
 		pthread_mutex_lock(&data->mut_death);
-		if (data->end == 1 || data->eat >= (data->n_eat * data->n_philo))
+		if (data->end == 1
+			|| data->eat >= (size_t)(data->n_eat * data->n_philo))
 		{
 			pthread_mutex_unlock(&data->mut_death);
 			return (NULL);
