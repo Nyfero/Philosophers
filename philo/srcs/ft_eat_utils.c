@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 11:30:08 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/25 10:53:48 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/26 14:11:10 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,30 @@ void	*one_philo(t_philo *vitals, t_data *data)
 		usleep(100);
 	drop_left_fork(vitals, data);
 	return (NULL);
+}
+
+void	split_eating_time(t_philo *vitals, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (is_alive(vitals, data) && i != data->t_eat / 5)
+	{
+		usleep(5000);
+		i++;
+	}
+	return ;
+}
+
+void	insomnia(t_philo *vitals, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (is_alive(vitals, data) && i != data->t_sleep / 5)
+	{
+		usleep(5000);
+		i++;
+	}
+	return ;
 }

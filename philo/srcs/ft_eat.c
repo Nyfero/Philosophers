@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:41:56 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/26 10:57:07 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/26 14:37:08 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	eat(t_philo *vitals, t_data *data)
 	{
 		vitals->last = reset_time();
 		print_info(*vitals, data, "is eating");
-		usleep(data->t_eat * 1000);
+		split_eating_time(vitals, data);
 		if (is_alive(vitals, data))
 		{
 			vitals->eat++;
@@ -71,16 +71,21 @@ void	drop_fork(t_philo *vitals, t_data *data)
 	}
 }
 
+/*
+**	usleep(data->t_die / 5) permet de recaler les philosophes pour pas que les
+**	pairs et impairs se chevauchent
+*/
+
 void	sleep_and_think(t_philo *vitals, t_data *data)
 {
 	if (is_alive(vitals, data))
 	{
 		print_info(*vitals, data, "is sleeping");
-		usleep(data->t_sleep * 1000);
+		insomnia(vitals, data);
 		if (is_alive(vitals, data))
 		{
 			if (vitals->pos % 2 == 1)
-				usleep(data->t_die / 4);
+				usleep(data->t_die / 5);
 			print_info(*vitals, data, "is thinking");
 		}
 	}

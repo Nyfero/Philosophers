@@ -6,7 +6,7 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/26 11:05:46 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/26 13:46:10 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(NAME): $(OBJS_PATH) $(OBJS)
 $(OBJS_PATH):
 	@ mkdir -p $(OBJS_PATH)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)/$(NAME).h
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)/$(NAME).h Makefile
 	@ $(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
 clean:
