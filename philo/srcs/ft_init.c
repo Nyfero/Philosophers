@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/14 11:26:49 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/26 10:57:16 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	init(t_data *data, int argc, char **argv)
 	data->t_eat = ft_atoi(argv[3]);
 	data->t_sleep = ft_atoi(argv[4]);
 	data->n_eat = -1;
+	data->eat = 0;
 	if (argc == 6)
 		data->n_eat = ft_atoi(argv[5]);
 	data->i = 0;

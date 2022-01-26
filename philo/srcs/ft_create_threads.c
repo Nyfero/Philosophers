@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:12:37 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/25 11:01:00 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/26 10:54:14 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	*routine(void *arg)
 		return (one_philo(&vitals, data));
 	if ((vitals.pos % 2) == 1)
 		usleep(150);
-	while (vitals.eat != data->n_eat)
+	while (1)
 	{
 		pthread_mutex_lock(&data->mut_death);
-		if (data->end == 1)
+		if (data->end == 1 || data->eat >= (data->n_eat * data->n_philo))
 		{
 			pthread_mutex_unlock(&data->mut_death);
 			return (NULL);

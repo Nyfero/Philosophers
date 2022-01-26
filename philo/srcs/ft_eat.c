@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:41:56 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/25 11:07:58 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/26 10:57:07 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ void	eat(t_philo *vitals, t_data *data)
 		print_info(*vitals, data, "is eating");
 		usleep(data->t_eat * 1000);
 		if (is_alive(vitals, data))
+		{
 			vitals->eat++;
+			pthread_mutex_lock(&data->mut_death);
+			data->eat++;
+			pthread_mutex_unlock(&data->mut_death);
+		}
 	}
 }
 
