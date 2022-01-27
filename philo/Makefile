@@ -6,7 +6,7 @@
 #    By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/20 14:07:19 by gsap              #+#    #+#              #
-#    Updated: 2022/01/26 13:46:10 by gsap             ###   ########.fr        #
+#    Updated: 2022/01/27 17:16:05 by gsap             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NAME = philo
 
 CC = clang
 
-CFLAGS = -g -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 RM = rm -rf
 
@@ -47,14 +47,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS_PATH) $(OBJS)
 	@ echo "$(BLUE)\n		*** Make $(NAME) ***\n$(END)"
-	@ $(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@ echo "$(GREEN)\n		---$(NAME) created ---\n$(END)"
 
 $(OBJS_PATH):
 	@ mkdir -p $(OBJS_PATH)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)/$(NAME).h Makefile
-	@ $(CC) $(CFLAGS) -I $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
 clean:
 	@ $(RM) $(OBJS_PATH)

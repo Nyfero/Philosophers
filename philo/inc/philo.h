@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/26 14:06:23 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/27 17:45:01 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ typedef struct s_time
 typedef struct s_philo
 {
 	int				pos;
+	int				forks;
 	long int		now;
 	long int		last;
 	long int		eat;
+	long int		sleep;
 	struct s_data	*data;
 }	t_philo;
 
@@ -95,8 +97,6 @@ void		sleep_and_think(t_philo *vitals, t_data *data);
 long int	reset_time(void);
 int			is_alive(t_philo *vitals, t_data *data);
 void		*one_philo(t_philo *vitals, t_data *data);
-void		split_eating_time(t_philo *vitals, t_data *data);
-void		insomnia(t_philo *vitals, t_data *data);
 
 //	ft_forks_utils.c
 void		take_left_fork(t_philo *vitals, t_data *data);
