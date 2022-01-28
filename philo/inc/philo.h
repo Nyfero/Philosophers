@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:37:00 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/27 17:45:01 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/28 11:20:50 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_data
 
 	pthread_mutex_t	mut_speak;
 	pthread_mutex_t	mut_death;
-	pthread_mutex_t	mut_fork[200];
+	pthread_mutex_t	*mut_fork;
 	t_philo			*vitals;
 
 	int				n_philo;

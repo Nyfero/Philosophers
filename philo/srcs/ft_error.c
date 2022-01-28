@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 12:06:33 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/26 10:57:21 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/28 11:22:59 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ int	clean(t_data *data)
 	pthread_mutex_destroy(&data->mut_death);
 	if (data->vitals)
 		free(data->vitals);
+	if (data->mut_fork)
+		free(data->mut_fork);
 	return (1);
 }

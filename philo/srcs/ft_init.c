@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/27 17:14:34 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/28 11:22:01 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	check_param(int argc, char **argv)
 				return (0);
 			j++;
 		}
-		if (ft_atoi(argv[i]) > 2147463647)
+		if (j > 10)
+			return (0);
+		if (ft_atoi(argv[i]) > 2147483647)
 			return (0);
 		i++;
 	}
@@ -89,6 +91,9 @@ int	mutex_init(t_data *data)
 	pthread_mutex_init(&data->mut_speak, NULL);
 	pthread_mutex_init(&data->mut_death, NULL);
 	i = 0;
+	data->mut_fork = malloc(sizeof(pthread_mutex_t) * data->n_philo);
+	if (!data->mut_fork)
+		return (0);
 	while (i < data->n_philo)
 		pthread_mutex_init(&data->mut_fork[i++], NULL);
 	return (1);
