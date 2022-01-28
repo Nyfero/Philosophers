@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/28 15:00:23 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/28 17:28:21 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	init(t_data *data, int argc, char **argv)
 	data->i = 0;
 	data->end = 0;
 	if (!(mutex_init(data)))
-	return (0);
+		return (0);
 	gettimeofday(&data->time.now, NULL);
 	data->start = (data->time.now.tv_sec * 1000000
 			+ data->time.now.tv_usec) / 1000;
