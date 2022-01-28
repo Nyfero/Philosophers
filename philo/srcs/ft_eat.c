@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:41:56 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/28 11:18:35 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/28 12:15:32 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ void	drop_fork(t_philo *vitals, t_data *data)
 }
 
 /*
-**	usleep(data->n_philo) permet de recaler les philosophes pour pas que les
-**	pairs et impairs se chevauchent
+**	usleep(150) permet d'eviter les lock order
 */
 
 void	sleep_and_think(t_philo *vitals, t_data *data)
