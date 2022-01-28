@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:41:56 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/28 12:15:32 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/28 15:26:33 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	sleep_and_think(t_philo *vitals, t_data *data)
 		if (is_alive(vitals, data))
 		{
 			if (vitals->pos % 2 == 1)
-				usleep(150);
+				usleep(1000);
 			print_info(*vitals, data, "is thinking");
 		}
 	}

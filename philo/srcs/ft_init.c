@@ -6,7 +6,7 @@
 /*   By: gsap <gsap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:35:20 by gsap              #+#    #+#             */
-/*   Updated: 2022/01/28 11:22:01 by gsap             ###   ########.fr       */
+/*   Updated: 2022/01/28 15:00:23 by gsap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	check_param(int argc, char **argv)
 	}
 	if (argc != 5 && argc != 6)
 		return (0);
+	if (ft_atoi(argv[1]) > 200)
+		return (0);
 	return (1);
 }
 
@@ -51,7 +53,7 @@ int	init(t_data *data, int argc, char **argv)
 	data->i = 0;
 	data->end = 0;
 	if (!(mutex_init(data)))
-		return (0);
+	return (0);
 	gettimeofday(&data->time.now, NULL);
 	data->start = (data->time.now.tv_sec * 1000000
 			+ data->time.now.tv_usec) / 1000;
@@ -91,9 +93,6 @@ int	mutex_init(t_data *data)
 	pthread_mutex_init(&data->mut_speak, NULL);
 	pthread_mutex_init(&data->mut_death, NULL);
 	i = 0;
-	data->mut_fork = malloc(sizeof(pthread_mutex_t) * data->n_philo);
-	if (!data->mut_fork)
-		return (0);
 	while (i < data->n_philo)
 		pthread_mutex_init(&data->mut_fork[i++], NULL);
 	return (1);
